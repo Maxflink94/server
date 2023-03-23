@@ -1,17 +1,17 @@
 {
   "p1": {
-    "id": 1,
     "name": "Max",
-    "age": "29"
+    "age": "29",
+    "favoriteColor": "Blue"
   },
   "p2": {
-    "id": 2,
     "name": "Sebbe",
-    "age": "22"
+    "age": "22",
+    "favoriteColor": "Red"
   },
   "p3": {
-    "id": 3,
     "name": "Marcus",
-    "age": "34"
+    "age": "34",
+    "favorite Color": "Green"
   }
 }

@@ -47,7 +47,7 @@ public class Server {
 
                     System.out.println("Message recieved and sent back!");
 
-                    //Skriver ut Markus JSONObjekt
+                    //Skriver ut JSONObjekt
                     bufferedWriter.write(returnData);
                     bufferedWriter.newLine();
                     bufferedWriter.flush();
@@ -69,20 +69,8 @@ public class Server {
             }
         }
     }
-    static String FetchJsonFromFile(String message) throws IOException, org.json.simple.parser.ParseException {
 
-        //Hämta data från JSON fil
-        JSONObject fetchData = (JSONObject) new JSONParser().parse(new FileReader("src/data.json"));
-
-        //Konvertera data till ett JSONObject
-        JSONObject person = (JSONObject) fetchData.get(message);
-
-        System.out.println(person);
-
-        return person.toJSONString();
-    }
-
-    //Markus Genomgång
+    //Metod för att öppna upp data
     static String openUpData (String message) throws ParseException, IOException {
         //Steg 1. Bygg upp JSON object baserat på inkommande string
         JSONParser parser = new JSONParser();
@@ -97,10 +85,11 @@ public class Server {
 
         //Steg 4. Använd en SwitchCase för att kolla vilken data som ska användas
         switch (urls[0]) {
-            case "persons": {
+            case "allPersons": {
                 if (method.equals("get")) {
                     //Vill hämta data om personer
-                    //TODO Lägg till logik om det är specifk person som ska hämtas
+                    //TODO Lägg till logik om man vill hämta all information om en person
+                    //TODO Lägg till logik om man vill hämta specifik information om en specifik person
 
                     //Skapa JSONReturn objektet
                     JSONObject jsonReturn = new JSONObject();
@@ -114,6 +103,21 @@ public class Server {
                     return jsonReturn.toJSONString();
                 }
                 break;
+            }
+            case "personOne" : {
+                if (method.equals("get")) {
+
+                    //Skapa JSONReturn objektet
+                    JSONObject jsonReturn = new JSONObject();
+                    //Hämta data från JSON-fil
+                    jsonReturn.put("p1", parser.parse(new FileReader("src/data.json")).toString());
+
+                    //Inkluderar HTTP status Code
+                    jsonReturn.put("httpStatusCode", 200);
+
+                    //Returnera JSON-String
+                    return jsonReturn.toJSONString();
+                }
             }
         }
 
