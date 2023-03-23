@@ -121,6 +121,6 @@ public class Server {
             }
         }
 
-        return "Message recieved";
+        return "Message received";
     }
 }
