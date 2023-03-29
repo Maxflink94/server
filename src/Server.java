@@ -45,7 +45,7 @@ public class Server {
 
                     String returnData = openUpData(message);
 
-                    System.out.println("Message recieved and sent back!");
+                    System.out.println("Message received and sent back!");
 
                     //Skriver ut JSONObjekt
                     bufferedWriter.write(returnData);
@@ -104,23 +104,7 @@ public class Server {
                 }
                 break;
             }
-            case "personOne" : {
-                if (method.equals("get")) {
-
-                    //Skapa JSONReturn objektet
-                    JSONObject jsonReturn = new JSONObject();
-                    //Hämta data från JSON-fil
-                    jsonReturn.put("p1", parser.parse(new FileReader("src/data.json")).toString());
-
-                    //Inkluderar HTTP status Code
-                    jsonReturn.put("httpStatusCode", 200);
-
-                    //Returnera JSON-String
-                    return jsonReturn.toJSONString();
-                }
-            }
         }
-
         return "Message received";
     }
 }
